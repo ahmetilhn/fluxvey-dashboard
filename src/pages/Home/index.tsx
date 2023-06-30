@@ -1,6 +1,6 @@
 import AnswersWidget from "../../components/AnswersWidget";
 import SurveysWidget from "../../components/SurveysWidget";
-import AnswersChart from "../../components/charts/AnswersCharts";
+import AnswersChart from "../../components/charts/AnswersChart";
 import "./index.scss";
 const Home: React.FC = () => {
   return (
