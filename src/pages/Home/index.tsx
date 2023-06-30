@@ -23,7 +23,6 @@ const Home: React.FC = () => {
   const initAnswers = async () => {
     try {
       const date = new Date();
-      console.log(date.setDate(date.getDate() - 7), date);
       const res = await answerService.getAllAnswers({
         end_of_date: date,
         start_of_date: JSON.parse(
