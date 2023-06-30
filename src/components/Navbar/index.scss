@@ -21,7 +21,7 @@
       width: 36px;
       height: 36px;
       margin: 16px 0;
-      background-color: $gray-one;
+      background-color: transparentize($gray-one, 0.5);
       border-radius: 10px;
       &:hover {
         svg {
