@@ -48,7 +48,12 @@ const Navbar = () => {
           ))}
         </BrowserRouter>
       </div>
-      <div className="navbar__profile"></div>
+      <div className="navbar__profile vertical-center">
+        <img
+          src="https://media.licdn.com/dms/image/D4D03AQF4N-btf8E93g/profile-displayphoto-shrink_800_800/0/1686602018273?e=1693440000&v=beta&t=XajF_xqv5RYcLvvPrfVAqaowhotHtW61_OhuDYuVzWg"
+          alt=""
+        />
+      </div>
     </nav>
   );
 };
