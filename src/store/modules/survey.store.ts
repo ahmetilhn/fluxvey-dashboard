@@ -4,6 +4,8 @@ import IAnswer from "../../types/IAnswer";
 type StoreType = {
   surveys: Array<ISurvey>;
   answers: Array<IAnswer>;
+  setSurveys: (data: Array<ISurvey>) => unknown;
+  setAnswers: (data: Array<IAnswer>) => unknown;
 };
 const initialState = {
   surveys: [],
@@ -11,8 +13,8 @@ const initialState = {
 };
 const useSurveyStore = create<StoreType>((set) => ({
   ...initialState,
-  setSurveys: (data: Array<ISurvey>) => set({ surveys: data }),
-  setAnswers: (data: Array<IAnswer>) => set({ answers: data }),
+  setSurveys: (data) => set({ surveys: data }),
+  setAnswers: (data) => set({ answers: data }),
 }));
 
 export default useSurveyStore;

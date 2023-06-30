@@ -5,6 +5,25 @@ const RateChart = () => {
       pie: {
         startAngle: -90,
         endAngle: 270,
+        donut: {
+          labels: {
+            show: true,
+            total: {
+              show: true,
+              showAlways: false,
+              label: "Average",
+              fontSize: "15px",
+              fontFamily: "Helvetica, Arial, sans-serif",
+              fontWeight: 600,
+              color: "#373d3f",
+              formatter: function (w: any) {
+                return w.globals.seriesTotals.reduce((a: number, b: number) => {
+                  return a + b;
+                }, 0);
+              },
+            },
+          },
+        },
       },
     },
     dataLabels: {

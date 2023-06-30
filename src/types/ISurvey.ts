@@ -1,6 +1,9 @@
 import { SurveyTypes } from "../enums/survey.enums";
 
 export default interface ISurvey {
+  _id: string;
+  createdAt: Date;
+  updatedAt: Date;
   active: boolean;
   author_id: string;
   comment: string;
