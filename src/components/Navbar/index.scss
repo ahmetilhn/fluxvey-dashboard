@@ -2,6 +2,8 @@
   width: 100px;
   height: 100%;
   justify-content: space-between !important;
+  border-right: 1px solid $gray-one;
+  padding: 20px 0;
   &__logo {
     width: 54px;
     height: 54px;

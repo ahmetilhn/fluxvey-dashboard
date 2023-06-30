@@ -1,10 +1,10 @@
 .dashboard-layout {
   width: 100vw;
   height: 100vh;
-  padding: 20px 10px;
   justify-content: space-between !important;
   &__content {
-    width: calc(100% - 150px);
+    width: calc(100% - 100px);
+    padding: 20px 10px;
     height: 100%;
   }
 }
