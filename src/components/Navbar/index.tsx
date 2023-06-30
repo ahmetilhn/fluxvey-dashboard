@@ -17,10 +17,6 @@ const menus = [
     href: "/surveys",
   },
   {
-    icon: <InboxFill />,
-    href: "/answers",
-  },
-  {
     icon: <GearFill />,
     href: "/settings",
   },
