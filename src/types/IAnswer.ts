@@ -12,4 +12,7 @@ export default interface IAnswer {
   };
   custom_data: [];
   survey_id: string;
+  _id: string;
+  createdAt: Date;
+  updatedAt: Date;
 }

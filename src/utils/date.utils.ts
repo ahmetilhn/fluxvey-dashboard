@@ -3,7 +3,11 @@ export const last7Days = () => {
     .map((_, i) => {
       const d = new Date();
       d.setDate(d.getDate() - i);
-      return d.toLocaleDateString("en-EN", { weekday: "long" });
+      return getDayByDate(d);
     })
     .reverse();
+};
+
+export const getDayByDate = (date: Date): string => {
+  return date.toLocaleDateString("en-EN", { weekday: "long" });
 };

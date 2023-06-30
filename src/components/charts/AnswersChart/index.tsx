@@ -1,14 +1,19 @@
 import ReactApexChart from "react-apexcharts";
 import "./index.scss";
 import BaseWidget from "../../BaseWidget";
-import { last7Days } from "../../../utils/date.utils";
+import { getDayByDate, last7Days } from "../../../utils/date.utils";
+import { useSurveyStore } from "../../../store";
+import { useEffect, useState } from "react";
 export const AnswersChart = () => {
-  const series = [
-    {
-      name: "Average",
-      data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 2.4],
-    },
-  ];
+  const { last7DaysAnswers } = useSurveyStore((store) => store);
+  const [chartData, setChartData] = useState<Array<number>>([]);
+  const [isChartReady, setChartReady] = useState<boolean>(false);
+  useEffect(() => {
+    initChart();
+    return () => {
+      setChartData([]);
+    };
+  }, [last7DaysAnswers]);
   const options = {
     theme: {
       palette: "palette1", // upto palette10
@@ -24,7 +29,7 @@ export const AnswersChart = () => {
     dataLabels: {
       enabled: true,
       formatter: function (val: number) {
-        return val + "%";
+        return val;
       },
       offsetY: -20,
       style: {
@@ -58,32 +63,36 @@ export const AnswersChart = () => {
         enabled: true,
       },
     },
-    yaxis: {
-      axisBorder: {
-        show: false,
-      },
-      axisTicks: {
-        show: false,
-      },
-      labels: {
-        show: false,
-        formatter: function (val: number) {
-          return val + "%";
-        },
-      },
-    },
-    // title: {
-    //   text: "Monthly Inflation in Argentina, 2002",
-    //   floating: true,
-    //   offsetY: 330,
-    //   style: {
-    //     color: "#444",
-    //   },
-    // },
+  };
+  const initChart = () => {
+    last7Days().forEach((day) => {
+      let averageOfDay = 0;
+      last7DaysAnswers.forEach((answer) => {
+        const createdDay = getDayByDate(new Date(answer.createdAt));
+        if (day === createdDay) {
+          averageOfDay = Number(((averageOfDay + answer.rate) / 2).toFixed(1));
+        }
+      });
+      setChartData((val) => [...val, averageOfDay]);
+      setChartReady(true);
+    });
   };
   return (
     <BaseWidget title="Answer Graph">
-      <ReactApexChart options={options} series={series} type="bar" />
+      {isChartReady && (
+        <ReactApexChart
+          options={options}
+          series={[
+            {
+              name: "Average",
+              data: chartData,
+            },
+          ]}
+          type="bar"
+          width={"100%"}
+          height={"100%"}
+        />
+      )}
     </BaseWidget>
   );
 };

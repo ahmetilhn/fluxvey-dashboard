@@ -1,4 +1,9 @@
-import React, { PropsWithChildren, useEffect, useState } from "react";
+import React, {
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import ReactApexChart from "react-apexcharts";
 import answerService from "../../../services/modules/answer.service";
 import { XOctagon } from "react-bootstrap-icons";
@@ -10,10 +15,10 @@ const RateChart: React.FC<PropsWithChildren<Props>> = ({ surveyId }) => {
   const [isChartReady, setChartReady] = useState(false);
   const [series, setSeries] = useState<Array<number>>([]);
   useEffect(() => {
-    getChartData();
+    initChart();
   }, []);
 
-  const getChartData = async () => {
+  const initChart = useCallback(async () => {
     const res = await answerService.getAnswersBySurveyID(surveyId);
     if (Array.isArray(res)) {
       const scores = {
@@ -49,7 +54,7 @@ const RateChart: React.FC<PropsWithChildren<Props>> = ({ surveyId }) => {
         setChartReady(true);
       }
     }
-  };
+  }, []);
   const options = {
     plotOptions: {
       pie: {

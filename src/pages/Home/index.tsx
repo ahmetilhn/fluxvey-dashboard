@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import AnswersWidget from "../../components/AnswersWidget";
 import SurveysWidget from "../../components/SurveysWidget";
 import AnswersChart from "../../components/charts/AnswersChart";
@@ -7,20 +7,16 @@ import "./index.scss";
 import { useSurveyStore } from "../../store";
 import answerService from "../../services/modules/answer.service";
 const Home: React.FC = () => {
-  useEffect(() => {
-    initSurveys();
-    initAnswers();
-  }, []);
   const { setSurveys, setLast7DaysAnswers } = useSurveyStore((store) => store);
-  const initSurveys = async (): Promise<any> => {
+  const initSurveys = useCallback(async (): Promise<any> => {
     try {
       const res = await surveyService.getAllSurveys();
       if (Array.isArray(res)) {
         setSurveys(res);
       }
     } catch (error) {}
-  };
-  const initAnswers = async () => {
+  }, []);
+  const initAnswers = useCallback(async (): Promise<any> => {
     try {
       const date = new Date();
       const res = await answerService.getAllAnswers({
@@ -33,7 +29,11 @@ const Home: React.FC = () => {
         setLast7DaysAnswers(res);
       }
     } catch (error) {}
-  };
+  }, []);
+  useEffect(() => {
+    initAnswers();
+    initSurveys();
+  }, [initAnswers, initSurveys]);
   return (
     <div className="home horizontal-center">
       <AnswersChart />
