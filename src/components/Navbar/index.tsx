@@ -28,21 +28,17 @@ const Navbar = () => {
         <img src={logo} alt="Fluxvey Logo" />
       </div>
       <div className="navbar__links vertical-center">
-        <BrowserRouter>
-          {menus.map((item) => (
-            <NavLink
-              to={item.href}
-              className={({ isActive }) =>
-                isActive
-                  ? "active link vertical-center"
-                  : "link vertical-center"
-              }
-              key={item.href}
-            >
-              {item.icon}
-            </NavLink>
-          ))}
-        </BrowserRouter>
+        {menus.map((item) => (
+          <NavLink
+            to={item.href}
+            className={({ isActive }) =>
+              isActive ? "active link vertical-center" : "link vertical-center"
+            }
+            key={item.href}
+          >
+            {item.icon}
+          </NavLink>
+        ))}
       </div>
       <div className="navbar__profile vertical-center">
         <img

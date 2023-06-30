@@ -1,10 +1,14 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-]);
+import Surveys from "../pages/Surveys";
 
-export default router;
+const RouteLayer = () => {
+  return (
+    <Routes>
+      <Route element={<Home />} path="/" />
+      <Route element={<Surveys />} path="/surveys" />
+    </Routes>
+  );
+};
+
+export default RouteLayer;

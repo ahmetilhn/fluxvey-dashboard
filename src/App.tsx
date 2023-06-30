@@ -1,13 +1,15 @@
 import React from "react";
-import { RouterProvider } from "react-router-dom";
-import router from "./router";
+import RouteLayer from "./router";
 import DashboardLayout from "./layouts/DashboardLayout";
+import { BrowserRouter } from "react-router-dom";
 function App() {
   return (
     <React.Fragment>
-      <DashboardLayout>
-        <RouterProvider router={router} />
-      </DashboardLayout>
+      <BrowserRouter>
+        <DashboardLayout>
+          <RouteLayer />
+        </DashboardLayout>
+      </BrowserRouter>
     </React.Fragment>
   );
 }
