@@ -10,4 +10,9 @@ export default {
       },
     });
   },
+  getAllAnswers(params: object): Promise<AxiosResponse<Array<IAnswer>>> {
+    return baseHTTP.get("/answers", {
+      params,
+    });
+  },
 };

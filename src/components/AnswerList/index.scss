@@ -19,6 +19,23 @@
         margin-right: 5px;
       }
     }
+    .rate {
+      &--1 {
+        color: $red;
+      }
+      &--2 {
+        color: $red-light;
+      }
+      &--3 {
+        color: $orange;
+      }
+      &--4 {
+        color: $green-light;
+      }
+      &--5 {
+        color: $green;
+      }
+    }
     &:hover {
       width: 100%;
     }
