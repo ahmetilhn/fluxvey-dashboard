@@ -1,24 +1,12 @@
 import { BrowserChrome } from "react-bootstrap-icons";
 import "./index.scss";
-import answerService from "../../services/modules/answer.service";
-import { useEffect, useState } from "react";
 import IAnswer from "../../types/IAnswer";
+import { useSurveyStore } from "../../store";
 export const AnswerList = () => {
-  const [answers, setAnswers] = useState<Array<IAnswer>>([]);
-  useEffect(() => {
-    init();
-  }, []);
-  const init = async (): Promise<void> => {
-    const res = await answerService.getAllAnswers({
-      limit: 10,
-    });
-    if (!!Array.isArray(res)) {
-      setAnswers(res);
-    }
-  };
+  const { last7DaysAnswers } = useSurveyStore((store) => store);
   return (
     <div className="answer-list vertical-center">
-      {answers.map((item: IAnswer, index) => (
+      {last7DaysAnswers.map((item: IAnswer, index) => (
         <div key={index} className="answer-list__item horizontal-center">
           <span className="device-type horizontal-center">
             <BrowserChrome />

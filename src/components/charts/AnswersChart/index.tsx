@@ -1,11 +1,12 @@
 import ReactApexChart from "react-apexcharts";
 import "./index.scss";
 import BaseWidget from "../../BaseWidget";
+import { last7Days } from "../../../utils/date.utils";
 export const AnswersChart = () => {
   const series = [
     {
-      name: "Inflation",
-      data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+      name: "Average",
+      data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 2.4],
     },
   ];
   const options = {
@@ -33,20 +34,7 @@ export const AnswersChart = () => {
     },
 
     xaxis: {
-      categories: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ],
+      categories: last7Days(),
       position: "bottom",
       axisBorder: {
         show: false,
@@ -93,7 +81,6 @@ export const AnswersChart = () => {
     //   },
     // },
   };
-
   return (
     <BaseWidget title="Answer Graph">
       <ReactApexChart options={options} series={series} type="bar" />
