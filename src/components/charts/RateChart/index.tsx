@@ -1,5 +1,55 @@
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
-const RateChart = () => {
+import answerService from "../../../services/modules/answer.service";
+import { XOctagon } from "react-bootstrap-icons";
+import NotResult from "../../shared/NotResult";
+type Props = {
+  surveyId: string;
+};
+const RateChart: React.FC<PropsWithChildren<Props>> = ({ surveyId }) => {
+  const [isChartReady, setChartReady] = useState(false);
+  const [series, setSeries] = useState<Array<number>>([]);
+  useEffect(() => {
+    getChartData();
+  }, []);
+
+  const getChartData = async () => {
+    const res = await answerService.getAnswersBySurveyID(surveyId);
+    if (Array.isArray(res)) {
+      const scores = {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0,
+      };
+      res.forEach((item) => {
+        switch (item.rate) {
+          case 1:
+            scores["1"] = scores["1"] + 1;
+            break;
+          case 2:
+            scores["2"] = scores["2"] + 1;
+            break;
+          case 3:
+            scores["3"] = scores["3"] + 1;
+            break;
+          case 4:
+            scores["4"] = scores["4"] + 1;
+            break;
+          case 5:
+            scores["5"] = scores["5"] + 1;
+            break;
+          default:
+            break;
+        }
+      });
+      setSeries(Object.values(scores));
+      if (!!res.length) {
+        setChartReady(true);
+      }
+    }
+  };
   const options = {
     plotOptions: {
       pie: {
@@ -8,20 +58,6 @@ const RateChart = () => {
         donut: {
           labels: {
             show: true,
-            total: {
-              show: true,
-              showAlways: false,
-              label: "Average",
-              fontSize: "15px",
-              fontFamily: "Helvetica, Arial, sans-serif",
-              fontWeight: 600,
-              color: "#373d3f",
-              formatter: function (w: any) {
-                return w.globals.seriesTotals.reduce((a: number, b: number) => {
-                  return a + b;
-                }, 0);
-              },
-            },
           },
         },
       },
@@ -45,9 +81,17 @@ const RateChart = () => {
         },
       },
     ],
+    labels: ["Star 1", "Star 2", "Star 3", "Star 4", "Star 5"],
   };
-  const series = [44, 55, 41, 17, 15];
-  return <ReactApexChart options={options} series={series} type="donut" />;
+  return (
+    <>
+      {isChartReady === true ? (
+        <ReactApexChart options={options} series={series} type="donut" />
+      ) : (
+        <NotResult msg="Not enough graph data" />
+      )}
+    </>
+  );
 };
 
 export default RateChart;

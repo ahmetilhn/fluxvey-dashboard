@@ -8,7 +8,11 @@ import {
 } from "react-bootstrap-icons";
 import RateChart from "../charts/RateChart";
 type Props = ISurvey;
-const SurveyCard: React.FC<PropsWithChildren<Props>> = ({ name, active }) => {
+const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
+  name,
+  active,
+  _id,
+}) => {
   return (
     <article className="survey-card vertical-center">
       <header className="survey-card__header horizontal-center">
@@ -19,7 +23,7 @@ const SurveyCard: React.FC<PropsWithChildren<Props>> = ({ name, active }) => {
         </div>
       </header>
       <main className="survey-card__content vertical-center">
-        <RateChart />
+        <RateChart surveyId={_id} />
       </main>
       <footer className="survey-card__footer horizontal-center">
         <span className="answers horizontal-center">
