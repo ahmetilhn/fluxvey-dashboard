@@ -1,15 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import BaseWidget from "../../../components/BaseWidget";
 import SurveyEditor from "../../../components/SurveyEditor";
 import surveyService from "../../../services/modules/survey.service";
 import "./index.scss";
 const NewSurvey = () => {
+  const navigate = useNavigate();
   const createNewSurvey = async (payload: {}) => {
     try {
       const res = await surveyService.createSurvey({
         ...payload,
         author_id: 111,
       });
-      console.log(res);
+      if (res) {
+        navigate("/surveys");
+      }
     } catch (error) {}
   };
   return (

@@ -4,7 +4,7 @@ import "./index.scss";
 const SurveysWidget = () => {
   return (
     <BaseWidget width="100%" height="310px">
-      <SurveyList />
+      <SurveyList isScrollingX={true} />
     </BaseWidget>
   );
 };

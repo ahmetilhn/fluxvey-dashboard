@@ -1,7 +1,10 @@
 .survey-list {
   width: 100%;
-  height: 100%;
   justify-content: flex-start !important;
   align-items: flex-start !important;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  &--scroll-x {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+  }
 }
