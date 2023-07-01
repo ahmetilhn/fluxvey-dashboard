@@ -1,6 +1,6 @@
 import "./index.scss";
 import logo from "../../assets/svg/logo.svg";
-import { BrowserRouter, NavLink } from "react-router-dom";
+import { BrowserRouter, Link, NavLink } from "react-router-dom";
 import {
   InboxFill,
   GearFill,
@@ -25,7 +25,9 @@ const Navbar = () => {
   return (
     <nav className="navbar vertical-center">
       <div className="navbar__logo vertical-center">
-        <img src={logo} alt="Fluxvey Logo" />
+        <Link to="/" className="vertical-center">
+          <img src={logo} alt="Fluxvey Logo" />
+        </Link>
       </div>
       <div className="navbar__links vertical-center">
         {menus.map((item) => (
