@@ -1,4 +1,5 @@
-import { AxiosInstance } from "axios";
+import { AxiosError, AxiosInstance } from "axios";
+import { toast } from "react-hot-toast";
 
 export default (axios: AxiosInstance) => {
   axios.interceptors.response.use(
@@ -7,7 +8,8 @@ export default (axios: AxiosInstance) => {
       // Do something with response data
       return response.data;
     },
-    function (error) {
+    function (error: AxiosError) {
+      toast.error(error.message);
       // Any status codes that falls outside the range of 2xx cause this function to trigger
       // Do something with response error
       return Promise.reject(error);
