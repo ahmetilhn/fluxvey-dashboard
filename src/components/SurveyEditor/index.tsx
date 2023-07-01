@@ -4,7 +4,13 @@ import Textarea from "../shared/Textarea";
 import "./index.scss";
 import BoxCheckbox from "../shared/BoxCheckbox";
 import Button from "../shared/Button";
+import { initPreviewWidget } from "../../plugins/preview-widgets.plugin";
+import { useEffect } from "react";
 const SurveyEditor = () => {
+  useEffect(() => {
+    initPreviewWidget();
+  }, []);
+
   return (
     <section className="survey-editor horizontal-center">
       <div className="survey-editor__form vertical-center">
@@ -48,7 +54,9 @@ const SurveyEditor = () => {
           </div>
         </div>
       </div>
-      <div className="survey-editor__preview vertical-center"></div>
+      <div className="survey-editor__preview vertical-center">
+        <div className="fluxvey-root-div" id="fluxvey_root_div"></div>
+      </div>
     </section>
   );
 };

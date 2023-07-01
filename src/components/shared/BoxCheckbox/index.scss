@@ -27,7 +27,7 @@
   left: 0;
   height: 24px;
   width: 24px;
-  background-color: $gray-one;
+  background-color: transparentize($color: $gray-one, $amount: 0.4);
   border-radius: 4px;
 }
 
