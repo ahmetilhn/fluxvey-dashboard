@@ -2,6 +2,7 @@ import { BrowserChrome } from "react-bootstrap-icons";
 import "./index.scss";
 import IAnswer from "../../types/IAnswer";
 import { useSurveyStore } from "../../store";
+import NotResult from "../shared/NotResult";
 export const AnswerList = () => {
   const { last7DaysAnswers } = useSurveyStore((store) => store);
   return (
@@ -17,6 +18,7 @@ export const AnswerList = () => {
           <span>{item.session.platform}</span>
         </div>
       ))}
+      {!last7DaysAnswers.length && <NotResult msg="Not enough answers" />}
     </div>
   );
 };
