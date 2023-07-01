@@ -6,4 +6,7 @@ export default {
   async getAllSurveys(): Promise<AxiosResponse<Array<ISurvey>>> {
     return baseHTTP.get("/surveys");
   },
+  async createSurvey(payload: {}): Promise<AxiosResponse<any>> {
+    return baseHTTP.post("/surveys", payload);
+  },
 };
