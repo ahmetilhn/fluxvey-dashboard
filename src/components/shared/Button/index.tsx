@@ -2,13 +2,13 @@ import React, { PropsWithChildren } from "react";
 import "./index.scss";
 type Props = {
   children: React.ReactNode;
-  isActive?: boolean;
+  isDisabled?: boolean;
   onClick: () => void;
   width: string;
 };
 const Button: React.FC<PropsWithChildren<Props>> = ({
   children,
-  isActive = true,
+  isDisabled = true,
   onClick,
   width,
 }) => {
@@ -16,7 +16,7 @@ const Button: React.FC<PropsWithChildren<Props>> = ({
     <button
       onClick={onClick}
       className="button horizontal-center"
-      disabled={isActive}
+      disabled={isDisabled}
       style={{ width }}
     >
       {children}

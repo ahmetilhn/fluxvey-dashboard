@@ -2,16 +2,19 @@ import React, { PropsWithChildren } from "react";
 import "./index.scss";
 type Props = {
   placeholder: string;
-  onChange: () => void;
+  onChange: (val: string) => void;
+  value?: string;
 };
 const Textarea: React.FC<PropsWithChildren<Props>> = ({
   onChange,
   placeholder,
+  value,
 }) => {
   return (
     <textarea
       className="textarea"
-      onChange={onChange}
+      onChange={(e) => onChange(e.target.value)}
+      value={value}
       placeholder={placeholder}
     />
   );

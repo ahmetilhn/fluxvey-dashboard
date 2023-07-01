@@ -9,17 +9,13 @@ const BoxCheckbox: React.FC<PropsWithChildren<Props>> = ({
   onChange,
   value = false,
 }) => {
-  const [isChecked, setChecked] = useState<boolean>(value);
   return (
     <label className="container">
       <input
-        onChange={() => {
-          setChecked(!isChecked);
-          onChange(isChecked);
-        }}
+        onChange={() => onChange(!value)}
         className="toggle-checkbox"
         type="checkbox"
-        checked={isChecked}
+        checked={value}
       />
       <span className="checkmark"></span>
     </label>

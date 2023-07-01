@@ -5,42 +5,66 @@ import "./index.scss";
 import BoxCheckbox from "../shared/BoxCheckbox";
 import Button from "../shared/Button";
 import { initPreviewWidget } from "../../plugins/preview-widgets.plugin";
-import { useEffect } from "react";
-const SurveyEditor = () => {
+import React, { PropsWithChildren, useEffect, useState } from "react";
+import ISurvey from "../../types/ISurvey";
+type Props = {
+  survey?: ISurvey;
+  isEditMod?: boolean;
+  handleSubmit: (payload: {}) => void;
+};
+const SurveyEditor: React.FC<PropsWithChildren<Props>> = ({
+  survey,
+  isEditMod = false,
+  handleSubmit,
+}) => {
   useEffect(() => {
     initPreviewWidget();
   }, []);
-
+  const [name, setName] = useState<string>(survey?.name || "");
+  const [title, setTitle] = useState<string>(survey?.title || "");
+  const [comment, setComment] = useState<string>(survey?.comment || "");
+  const [isActive, setActive] = useState<boolean>(survey?.active || false);
+  const [isAgreementAccepted, setAgreementAccepted] = useState(true);
   return (
     <section className="survey-editor horizontal-center">
       <div className="survey-editor__form vertical-center">
         <div className="form vertical-center">
           <div className="form__item vertical-center">
             <span>Survey Name</span>
-            <Input type="text" placeholder="Survey Name" onChange={() => {}} />
+            <Input
+              type="text"
+              value={name}
+              placeholder="Survey Name"
+              onChange={(e) => setName(e)}
+            />
           </div>
           <div className="form__item vertical-center">
             <span>Survey Title</span>
             <Textarea
+              value={title}
               placeholder="Survey Title E.G:How likely is it that you will recommend our product to a friend or colleague?"
-              onChange={() => {}}
+              onChange={(e) => setTitle(e)}
             />
           </div>
           <div className="form__item vertical-center">
             <span>Description</span>
             <Textarea
+              value={comment}
               placeholder="Survey Description E.G: This form created for product analyze and tracking..."
-              onChange={() => {}}
+              onChange={(e) => setComment(e)}
             />
           </div>
           <div className="form__item vertical-center">
             <span>Status</span>
-            <SwitchCheckbox onChange={() => {}} />
+            <SwitchCheckbox value={isActive} onChange={(e) => setActive(e)} />
           </div>
           <div className="form__item vertical-center">
             <span>...</span>
             <div className="warning horizontal-center">
-              <BoxCheckbox onChange={() => {}} />
+              <BoxCheckbox
+                value={isAgreementAccepted}
+                onChange={(e) => setAgreementAccepted(e)}
+              />
               <p>
                 By creating this survey, you agree that it is a survey that does
                 not evaluate or disparage a political or personal character.
@@ -48,7 +72,13 @@ const SurveyEditor = () => {
             </div>
           </div>
           <div className="form__item vertical-center">
-            <Button width="100%" onClick={() => {}}>
+            <Button
+              isDisabled={!title || !name || !comment || !isAgreementAccepted}
+              width="100%"
+              onClick={() =>
+                handleSubmit({ title, active: isActive, comment, name })
+              }
+            >
               Create
             </Button>
           </div>
