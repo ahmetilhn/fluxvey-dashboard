@@ -1,9 +1,10 @@
-import React from "react";
 import "./index.scss";
 import Navbar from "../../components/Navbar";
 import { Outlet } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const DashboardLayout = () => {
+  useAuth();
   return (
     <div className="dashboard-layout horizontal-center">
       <Navbar />

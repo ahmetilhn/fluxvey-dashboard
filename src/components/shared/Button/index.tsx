@@ -8,7 +8,7 @@ type Props = {
 };
 const Button: React.FC<PropsWithChildren<Props>> = ({
   children,
-  isDisabled = true,
+  isDisabled = false,
   onClick,
   width,
 }) => {
