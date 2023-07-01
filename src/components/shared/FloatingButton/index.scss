@@ -1,0 +1,29 @@
+@keyframes bottomToTop {
+  to {
+    bottom: 40px;
+  }
+}
+$color-list: $primary-darkest, $primary, $primary-light;
+.floating-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  @include gradient(45deg, $color-list);
+  border: 1px solid $primary-darkest;
+  font-size: 14px;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out;
+  position: fixed;
+  right: 40px;
+  bottom: -100px;
+  cursor: pointer;
+  animation: bottomToTop 0.5s forwards ease;
+  svg {
+    width: 60%;
+    height: 60%;
+    fill: $white;
+  }
+  &:hover {
+    transform: rotate(180deg) scale(1.2);
+  }
+}

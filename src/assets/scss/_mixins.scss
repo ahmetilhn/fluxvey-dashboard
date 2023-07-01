@@ -33,3 +33,7 @@ $extra-large: 1400px;
     @content;
   }
 }
+//$list1: $blue, $green, $orange;
+@mixin gradient($direction, $list) {
+  background: linear-gradient($direction, $list);
+}

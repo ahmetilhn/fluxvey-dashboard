@@ -1,3 +1,4 @@
+$color-list: $primary-darkest, $primary, $primary-light;
 .navbar {
   width: 100px;
   height: 100%;
@@ -8,7 +9,8 @@
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    background-color: $dark;
+    @include gradient(45deg, $color-list);
+    border: 2px solid $primary-darkest;
     img {
       width: 60%;
       height: 60%;
