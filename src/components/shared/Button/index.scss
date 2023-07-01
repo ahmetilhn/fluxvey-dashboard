@@ -1,0 +1,16 @@
+.button {
+  height: 46px;
+  border: 2px solid $primary;
+  border-radius: 6px;
+  font-size: 15px;
+  color: $white;
+  font-weight: 600;
+  padding: 0 8px;
+  $colors: $primary-darkest, $primary, $primary-light;
+  @include gradient(45deg, $colors);
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.02);
+  }
+}
