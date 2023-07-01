@@ -3,10 +3,13 @@ import BaseWidget from "../../../components/BaseWidget";
 import SurveyEditor from "../../../components/SurveyEditor";
 import surveyService from "../../../services/modules/survey.service";
 import "./index.scss";
+import { useCommonStore } from "../../../store";
 const NewSurvey = () => {
+  const { updateLoading } = useCommonStore((store) => store);
   const navigate = useNavigate();
   const createNewSurvey = async (payload: {}) => {
     try {
+      updateLoading(true);
       const res = await surveyService.createSurvey({
         ...payload,
         author_id: 111,
@@ -14,7 +17,10 @@ const NewSurvey = () => {
       if (res) {
         navigate("/surveys");
       }
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      updateLoading(false);
+    }
   };
   return (
     <BaseWidget title="New Survey" width="100%" height="100%">

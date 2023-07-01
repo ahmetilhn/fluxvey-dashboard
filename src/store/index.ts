@@ -1,2 +1,3 @@
 import useSurveyStore from "./modules/survey.store";
-export { useSurveyStore };
+import useCommonStore from "./modules/common.store";
+export { useSurveyStore, useCommonStore };

@@ -4,19 +4,25 @@ import Input from "../../components/shared/Input";
 import "./index.scss";
 import authService from "../../services/modules/auth.service";
 import { useNavigate } from "react-router-dom";
+import { useCommonStore } from "../../store";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { updateLoading } = useCommonStore();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleForm = async () => {
     try {
+      updateLoading(true);
       const token = await authService.login({ email, password });
       if (token) {
         localStorage.setItem("auth_token", JSON.stringify(token));
         navigate("/");
       }
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      updateLoading(false);
+    }
   };
   return (
     <div className="login vertical-center">

@@ -4,20 +4,26 @@ import SurveysWidget from "../../components/SurveysWidget";
 import AnswersChart from "../../components/charts/AnswersChart";
 import surveyService from "../../services/modules/survey.service";
 import "./index.scss";
-import { useSurveyStore } from "../../store";
+import { useCommonStore, useSurveyStore } from "../../store";
 import answerService from "../../services/modules/answer.service";
 const Home: React.FC = () => {
   const { setSurveys, setLast7DaysAnswers } = useSurveyStore((store) => store);
+  const { updateLoading } = useCommonStore((store) => store);
   const initSurveys = useCallback(async (): Promise<any> => {
     try {
+      updateLoading(true);
       const res = await surveyService.getAllSurveys();
       if (Array.isArray(res)) {
         setSurveys(res);
       }
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      updateLoading(false);
+    }
   }, []);
   const initAnswers = useCallback(async (): Promise<any> => {
     try {
+      updateLoading(true);
       const date = new Date();
       const res = await answerService.getAllAnswers({
         end_of_date: date,
@@ -28,8 +34,12 @@ const Home: React.FC = () => {
       if (Array.isArray(res)) {
         setLast7DaysAnswers(res);
       }
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      updateLoading(false);
+    }
   }, []);
+
   useEffect(() => {
     initAnswers();
     initSurveys();
