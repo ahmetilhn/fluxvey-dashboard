@@ -1,0 +1,43 @@
+@keyframes jumpEffect {
+  0% {
+    transform: translateY(-30px) rotate(18.5deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-30px) rotate(-18.5deg);
+  }
+}
+.auth-layout {
+  height: 100vh;
+  width: 100vw;
+  justify-content: space-between !important;
+  &__left {
+    width: 50%;
+    height: 100%;
+    $color-list: $primary-darkest, $primary, $primary-light;
+    @include gradient(90deg, $color-list);
+    border-right: 4px solid $primary;
+    img {
+      display: block;
+      width: 150px;
+      position: relative;
+      animation: jumpEffect 0.5s ease infinite alternate;
+    }
+    .version {
+      font-size: 14px;
+      font-weight: bold;
+      color: $primary;
+      width: 110px;
+      height: 30px;
+      border-radius: 3px;
+      background-color: $white;
+    }
+  }
+
+  &__right {
+    width: 50%;
+    height: 100%;
+  }
+}

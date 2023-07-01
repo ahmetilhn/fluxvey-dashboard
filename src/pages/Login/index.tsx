@@ -1,9 +1,7 @@
+import "./index.scss";
+
 const Login = () => {
-  return (
-    <div className="login horizontal-center">
-      <h1></h1>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Login;
