@@ -6,9 +6,7 @@ function App() {
   return (
     <React.Fragment>
       <BrowserRouter>
-        <DashboardLayout>
-          <RouteLayer />
-        </DashboardLayout>
+        <RouteLayer />
       </BrowserRouter>
     </React.Fragment>
   );

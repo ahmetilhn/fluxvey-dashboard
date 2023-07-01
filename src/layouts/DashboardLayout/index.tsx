@@ -1,17 +1,14 @@
 import React from "react";
 import "./index.scss";
 import Navbar from "../../components/Navbar";
-type Props = {
-  children: React.ReactNode;
-};
-const DashboardLayout: React.FC<React.PropsWithChildren<Props>> = ({
-  children,
-}) => {
+import { Outlet } from "react-router-dom";
+
+const DashboardLayout = () => {
   return (
     <div className="dashboard-layout horizontal-center">
       <Navbar />
       <main className="dashboard-layout__content vertical-center">
-        {children}
+        <Outlet />
       </main>
     </div>
   );
