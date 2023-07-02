@@ -6,7 +6,6 @@ import React, {
 } from "react";
 import ReactApexChart from "react-apexcharts";
 import answerService from "../../../services/modules/answer.service";
-import { XOctagon } from "react-bootstrap-icons";
 import NotResult from "../../shared/NotResult";
 type Props = {
   surveyId: string;
