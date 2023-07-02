@@ -2,11 +2,12 @@ import "./index.scss";
 import logo from "../../assets/svg/logo.svg";
 import { BrowserRouter, Link, NavLink } from "react-router-dom";
 import {
-  InboxFill,
   GearFill,
   Speedometer,
   MenuButtonWideFill,
+  BoxArrowRight,
 } from "react-bootstrap-icons";
+import useAuth from "../../hooks/useAuth";
 const menus = [
   {
     icon: <Speedometer />,
@@ -22,6 +23,7 @@ const menus = [
   },
 ];
 const Navbar = () => {
+  const { logout } = useAuth();
   return (
     <nav className="navbar vertical-center">
       <div className="navbar__logo vertical-center">
@@ -42,11 +44,8 @@ const Navbar = () => {
           </NavLink>
         ))}
       </div>
-      <div className="navbar__profile vertical-center">
-        <img
-          src="https://media.licdn.com/dms/image/D4D03AQF4N-btf8E93g/profile-displayphoto-shrink_800_800/0/1686602018273?e=1693440000&v=beta&t=XajF_xqv5RYcLvvPrfVAqaowhotHtW61_OhuDYuVzWg"
-          alt=""
-        />
+      <div className="navbar__logout vertical-center">
+        <BoxArrowRight onClick={logout} width="20px" height="20px" />
       </div>
     </nav>
   );
