@@ -1,11 +1,11 @@
 import "./index.scss";
 import logo from "../../assets/svg/logo.svg";
-import { BrowserRouter, Link, NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import {
   GearFill,
   Speedometer,
   MenuButtonWideFill,
-  BoxArrowRight,
+  DoorClosedFill,
 } from "react-bootstrap-icons";
 import useAuth from "../../hooks/useAuth";
 const menus = [
@@ -45,7 +45,7 @@ const Navbar = () => {
         ))}
       </div>
       <div className="navbar__logout vertical-center">
-        <BoxArrowRight onClick={logout} width="20px" height="20px" />
+        <DoorClosedFill onClick={logout} width="20px" height="20px" />
       </div>
     </nav>
   );

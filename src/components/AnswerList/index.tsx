@@ -3,6 +3,7 @@ import IAnswer from "../../types/IAnswer";
 import NotResult from "../shared/NotResult";
 import React, { PropsWithChildren } from "react";
 import { StarFill } from "react-bootstrap-icons";
+import useDate from "../../hooks/useDate";
 type Props = {
   data: Array<IAnswer>;
   isDetailed?: boolean;
@@ -11,12 +12,13 @@ export const AnswerList: React.FC<PropsWithChildren<Props>> = ({
   data,
   isDetailed = false,
 }) => {
+  const { formattedDate } = useDate();
   return (
     <div className="answer-list vertical-center">
       <table>
         <thead>
           <tr>
-            {isDetailed && <th>Date</th>}
+            <th>Date</th>
             <th>Rate</th>
             <th>Device</th>
             <th>Message</th>
@@ -34,7 +36,7 @@ export const AnswerList: React.FC<PropsWithChildren<Props>> = ({
         <tbody>
           {data.slice(0, 20).map((item: IAnswer, index) => (
             <tr>
-              {isDetailed && <td>{item.createdAt.toString()}</td>}
+              <td>{formattedDate(item.createdAt)}</td>
               <td>
                 {Array(item.rate)
                   .fill(0)
