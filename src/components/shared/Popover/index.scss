@@ -1,0 +1,35 @@
+@keyframes showEffect {
+  to {
+    opacity: 1;
+    transform: translateY(15px);
+  }
+}
+.popover {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 130px;
+  height: fit-content;
+  background-color: $white;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  z-index: 222;
+  border-radius: 8px;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: showEffect 0.1s forwards;
+  overflow: hidden;
+  border: 1px solid transparentize($color: $gray-one, $amount: 0.5);
+  &__item {
+    width: 100%;
+    justify-content: flex-start !important;
+    padding: 10px 15px;
+    border-bottom: 1px solid transparentize($color: $gray-one, $amount: 0.5);
+    cursor: pointer;
+    &:hover {
+      background-color: transparentize($color: $gray-one, $amount: 0.5);
+    }
+    &:nth-last-child(1) {
+      border-bottom: none;
+    }
+  }
+}

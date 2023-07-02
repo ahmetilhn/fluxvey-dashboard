@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
 import "./index.scss";
 import ISurvey from "../../types/ISurvey";
 import {
@@ -7,19 +7,48 @@ import {
   ThreeDotsVertical,
 } from "react-bootstrap-icons";
 import RateChart from "../charts/RateChart";
+import Popover from "../shared/Popover";
 type Props = ISurvey;
 const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
   name,
   active,
   _id,
 }) => {
+  const [isSettingMenuVisible, setSettingMenuVisible] = useState(false);
+  const settingOptions = [
+    {
+      label: "Edit",
+      action: () => {
+        console.log("aslkdajs");
+      },
+    },
+    {
+      label: "Delete",
+      action: () => {
+        console.log("aslkdajs");
+      },
+    },
+    {
+      label: active ? "Disabled" : "Active",
+      action: () => {
+        console.log("aslkdajs");
+      },
+    },
+  ];
   return (
     <article className="survey-card vertical-center">
       <header className="survey-card__header horizontal-center">
         <span>{name}</span>
-        <div>
+        <div className="actions horizontal-center">
           <EyeFill style={{ marginRight: "8px" }} />
-          <ThreeDotsVertical />
+          <div className="setting vertical-center">
+            <ThreeDotsVertical
+              onClick={() => {
+                setSettingMenuVisible(!isSettingMenuVisible);
+              }}
+            />
+            {isSettingMenuVisible && <Popover options={settingOptions} />}
+          </div>
         </div>
       </header>
       <main className="survey-card__content vertical-center">

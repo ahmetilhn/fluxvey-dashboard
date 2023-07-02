@@ -16,12 +16,20 @@
       font-weight: 600;
       font-size: 14px;
     }
-    svg {
-      background-color: transparentize($color: $gray-one, $amount: 0.5);
-      border-radius: 50%;
-      padding: 5px;
-      box-sizing: content-box;
-      cursor: pointer;
+    .actions {
+      svg {
+        background-color: transparentize($color: $gray-one, $amount: 0.5);
+        border-radius: 50%;
+        padding: 5px;
+        box-sizing: content-box;
+        cursor: pointer;
+        &:hover {
+          background-color: $gray-one;
+        }
+      }
+      .setting {
+        position: relative;
+      }
     }
   }
   &__footer {
