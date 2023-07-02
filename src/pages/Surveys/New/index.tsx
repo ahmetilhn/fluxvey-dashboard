@@ -4,6 +4,7 @@ import SurveyEditor from "../../../components/SurveyEditor";
 import surveyService from "../../../services/modules/survey.service";
 import "./index.scss";
 import { useCommonStore } from "../../../store";
+import { toast } from "react-hot-toast";
 const NewSurvey = () => {
   const { updateLoading } = useCommonStore((store) => store);
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const NewSurvey = () => {
         author_id: 111,
       });
       if (res) {
+        toast.success("New survey created 🎉");
         navigate("/surveys");
       }
     } catch (error) {

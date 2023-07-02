@@ -16,9 +16,8 @@
   &__left {
     width: 50%;
     height: 100%;
-    $color-list: $primary-darkest, $primary, $primary-light;
-    @include gradient(90deg, $color-list);
-    border-right: 4px solid $primary;
+    $color-list: $primary-darkest, $primary, $white;
+    @include gradient(45deg, $color-list);
     img {
       display: block;
       width: 150px;

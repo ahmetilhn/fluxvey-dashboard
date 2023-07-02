@@ -29,9 +29,7 @@ const useAuth = () => {
       toast.loading("Exiting...");
       localStorage.removeItem(Auth.StorageKey);
       navigate(Auth.LoginPath);
-    } catch (error) {
-      toast.error(error as string);
-    }
+    } catch (error) {}
   };
   return {
     token,
