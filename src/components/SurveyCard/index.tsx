@@ -8,12 +8,14 @@ import {
 } from "react-bootstrap-icons";
 import RateChart from "../charts/RateChart";
 import Popover from "../shared/Popover";
+import useSurvey from "../../hooks/useSurvey";
 type Props = ISurvey;
 const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
   name,
   active,
   _id,
 }) => {
+  const { updateSurvey, deleteSurvey } = useSurvey();
   const [isSettingMenuVisible, setSettingMenuVisible] = useState(false);
   const settingOptions = [
     {
@@ -24,15 +26,11 @@ const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
     },
     {
       label: "Delete",
-      action: () => {
-        console.log("aslkdajs");
-      },
+      action: () => deleteSurvey(_id),
     },
     {
       label: active ? "Disabled" : "Active",
-      action: () => {
-        console.log("aslkdajs");
-      },
+      action: () => updateSurvey({ _id, active: !active }),
     },
   ];
   return (

@@ -1,32 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import BaseWidget from "../../../components/BaseWidget";
 import SurveyEditor from "../../../components/SurveyEditor";
-import surveyService from "../../../services/modules/survey.service";
 import "./index.scss";
-import { useCommonStore } from "../../../store";
-import { toast } from "react-hot-toast";
+import useSurvey from "../../../hooks/useSurvey";
 const NewSurvey = () => {
-  const { updateLoading } = useCommonStore((store) => store);
+  const { createSurvey } = useSurvey();
   const navigate = useNavigate();
-  const createNewSurvey = async (payload: {}) => {
-    try {
-      updateLoading(true);
-      const res = await surveyService.createSurvey({
-        ...payload,
-        author_id: 111,
-      });
-      if (res) {
-        toast.success("New survey created 🎉");
-        navigate("/surveys");
-      }
-    } catch (error) {
-    } finally {
-      updateLoading(false);
+  const handleSubmit = async (payload: {}) => {
+    const newSurvey = await createSurvey({ ...payload, author_id: 222 });
+    if (newSurvey) {
+      navigate("/surveys");
     }
   };
   return (
     <BaseWidget title="New Survey" width="100%" height="100%">
-      <SurveyEditor handleSubmit={createNewSurvey} />
+      <SurveyEditor handleSubmit={handleSubmit} />
     </BaseWidget>
   );
 };

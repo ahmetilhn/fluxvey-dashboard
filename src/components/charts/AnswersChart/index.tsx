@@ -2,10 +2,10 @@ import ReactApexChart from "react-apexcharts";
 import "./index.scss";
 import BaseWidget from "../../BaseWidget";
 import { getDayByDate, last7Days } from "../../../utils/date.utils";
-import { useSurveyStore } from "../../../store";
+import { useAnswerStore } from "../../../store";
 import { useEffect, useState } from "react";
 export const AnswersChart = () => {
-  const { last7DaysAnswers } = useSurveyStore((store) => store);
+  const { lastAnswers } = useAnswerStore((store) => store);
   const [chartData, setChartData] = useState<Array<number>>([]);
   const [isChartReady, setChartReady] = useState<boolean>(false);
   useEffect(() => {
@@ -13,7 +13,7 @@ export const AnswersChart = () => {
     return () => {
       setChartData([]);
     };
-  }, [last7DaysAnswers]);
+  }, [lastAnswers]);
   const options = {
     theme: {
       palette: "palette1", // upto palette10
@@ -67,7 +67,7 @@ export const AnswersChart = () => {
   const initChart = () => {
     last7Days().forEach((day) => {
       let averageOfDay = 0;
-      last7DaysAnswers.forEach((answer) => {
+      lastAnswers.forEach((answer) => {
         const createdDay = getDayByDate(new Date(answer.createdAt));
         if (day === createdDay) {
           averageOfDay = Number(((averageOfDay + answer.rate) / 2).toFixed(1));

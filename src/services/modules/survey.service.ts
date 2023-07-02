@@ -6,7 +6,13 @@ export default {
   async getAllSurveys(): Promise<AxiosResponse<Array<ISurvey>>> {
     return baseHTTP.get("/surveys");
   },
-  async createSurvey(payload: {}): Promise<AxiosResponse<any>>{
-    return baseHTTP.post("/surveys", payload)
-  }
+  async create(payload: {}): Promise<AxiosResponse<any>> {
+    return baseHTTP.post("/surveys", payload);
+  },
+  async delete(survey_id: string): Promise<AxiosResponse<any>> {
+    return baseHTTP.delete(`/surveys/${survey_id}`);
+  },
+  async update(payload: {}): Promise<AxiosResponse<any>> {
+    return baseHTTP.put("/surveys", payload);
+  },
 };

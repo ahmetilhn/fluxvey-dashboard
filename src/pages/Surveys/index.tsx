@@ -4,27 +4,13 @@ import SurveyList from "../../components/SurveyList";
 import FloatingButton from "../../components/shared/FloatingButton";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
-import { useCallback, useEffect } from "react";
-import surveyService from "../../services/modules/survey.service";
-import { useCommonStore, useSurveyStore } from "../../store";
+import { useEffect } from "react";
+import useSurvey from "../../hooks/useSurvey";
 const Surveys: React.FC = () => {
-  const { setSurveys } = useSurveyStore((store) => store);
-  const { updateLoading } = useCommonStore((store) => store);
+  const { initSurveyState } = useSurvey();
   const navigate = useNavigate();
   useEffect(() => {
-    initSurveys();
-  }, []);
-  const initSurveys = useCallback(async (): Promise<any> => {
-    try {
-      updateLoading(true);
-      const res = await surveyService.getAllSurveys();
-      if (Array.isArray(res)) {
-        setSurveys(res);
-      }
-    } catch (error) {
-    } finally {
-      updateLoading(false);
-    }
+    initSurveyState();
   }, []);
   const handleClick = () => {
     navigate("/surveys/new");

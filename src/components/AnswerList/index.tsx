@@ -1,13 +1,14 @@
 import { BrowserChrome } from "react-bootstrap-icons";
 import "./index.scss";
 import IAnswer from "../../types/IAnswer";
-import { useSurveyStore } from "../../store";
 import NotResult from "../shared/NotResult";
+import useAnswer from "../../hooks/useAnswer";
+import { useAnswerStore } from "../../store";
 export const AnswerList = () => {
-  const { last7DaysAnswers } = useSurveyStore((store) => store);
+  const { lastAnswers } = useAnswerStore((store) => store);
   return (
     <div className="answer-list vertical-center">
-      {last7DaysAnswers.slice(0, 20).map((item: IAnswer, index) => (
+      {lastAnswers.slice(0, 20).map((item: IAnswer, index) => (
         <div key={index} className="answer-list__item horizontal-center">
           <span className="device-type horizontal-center">
             <BrowserChrome />
@@ -18,7 +19,7 @@ export const AnswerList = () => {
           <span>{item.session.platform}</span>
         </div>
       ))}
-      {!last7DaysAnswers.length && <NotResult msg="Not enough answers" />}
+      {!lastAnswers.length && <NotResult msg="Not enough answers" />}
     </div>
   );
 };
