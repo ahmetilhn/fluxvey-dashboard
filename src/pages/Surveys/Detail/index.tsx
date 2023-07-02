@@ -33,6 +33,9 @@ const SurveyDetail = () => {
       <BaseWidget title="Answers" width="100%" height="400px">
         <AnswerList isDetailed={true} data={answers} />
       </BaseWidget>
+      <BaseWidget width="100%" height="400px">
+        <h1>aslkjd</h1>
+      </BaseWidget>
     </div>
   );
 };
