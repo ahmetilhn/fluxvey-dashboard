@@ -29,10 +29,12 @@ const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
     {
       label: "Delete",
       action: () => deleteSurvey(_id),
+      color: "#ed5959",
     },
     {
       label: active ? "Disabled" : "Active",
       action: () => updateSurvey({ _id, active: !active }),
+      color: active ? "#ed5959" : "#53cf84",
     },
   ];
   return (
