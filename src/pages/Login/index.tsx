@@ -5,6 +5,8 @@ import "./index.scss";
 import authService from "../../services/modules/auth.service";
 import { useNavigate } from "react-router-dom";
 import { useCommonStore } from "../../store";
+import { AxiosError } from "axios";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,6 +22,9 @@ const Login = () => {
         navigate("/");
       }
     } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message);
+      }
     } finally {
       updateLoading(false);
     }
@@ -47,7 +52,11 @@ const Login = () => {
           />
         </div>
         <div className="form__item vertical-center">
-          <Button isDisabled={false} width="100%" onClick={() => handleForm()}>
+          <Button
+            isDisabled={!email || !password}
+            width="100%"
+            onClick={() => handleForm()}
+          >
             Login
           </Button>
         </div>
