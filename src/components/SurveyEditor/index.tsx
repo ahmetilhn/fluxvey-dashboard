@@ -17,14 +17,21 @@ const SurveyEditor: React.FC<PropsWithChildren<Props>> = ({
   isEditMod = false,
   handleSubmit,
 }) => {
-  useEffect(() => {
-    initPreviewWidget();
-  }, []);
-  const [name, setName] = useState<string>(survey?.name || "");
-  const [title, setTitle] = useState<string>(survey?.title || "");
-  const [comment, setComment] = useState<string>(survey?.comment || "");
-  const [isActive, setActive] = useState<boolean>(survey?.active || false);
+  const [name, setName] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
+  const [comment, setComment] = useState<string>("");
+  const [isActive, setActive] = useState<boolean>(false);
   const [isAgreementAccepted, setAgreementAccepted] = useState(true);
+
+  useEffect(() => {
+    initPreviewWidget(survey?._id);
+    if (survey) {
+      setName(survey?.name);
+      setTitle(survey?.title);
+      setComment(survey?.comment);
+      setActive(survey?.active);
+    }
+  }, [survey]);
   return (
     <section className="survey-editor horizontal-center">
       <div className="survey-editor__form vertical-center">
@@ -79,7 +86,7 @@ const SurveyEditor: React.FC<PropsWithChildren<Props>> = ({
                 handleSubmit({ title, active: isActive, comment, name })
               }
             >
-              Create
+              {isEditMod ? "Update" : "Create"}
             </Button>
           </div>
         </div>

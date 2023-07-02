@@ -22,9 +22,7 @@ const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
   const settingOptions = [
     {
       label: "Edit",
-      action: () => {
-        console.log("Edit click");
-      },
+      action: () => navigate(`/surveys/edit/${_id}`),
     },
     {
       label: "Delete",
