@@ -2,6 +2,7 @@ import "./index.scss";
 import IAnswer from "../../types/IAnswer";
 import NotResult from "../shared/NotResult";
 import React, { PropsWithChildren } from "react";
+import { StarFill } from "react-bootstrap-icons";
 type Props = {
   data: Array<IAnswer>;
   isDetailed?: boolean;
@@ -34,7 +35,17 @@ export const AnswerList: React.FC<PropsWithChildren<Props>> = ({
           {data.slice(0, 20).map((item: IAnswer, index) => (
             <tr>
               {isDetailed && <td>{item.createdAt.toString()}</td>}
-              <td>{item.rate}</td>
+              <td>
+                {Array(item.rate)
+                  .fill(0)
+                  .map((item) => (
+                    <StarFill
+                      key={item}
+                      fill="#f5d100"
+                      style={{ marginLeft: "2px" }}
+                    />
+                  ))}
+              </td>
               <td>{item.session.device_type}</td>
               <td>{item.message}</td>
               <td> {item.session.platform} </td>

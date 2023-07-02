@@ -72,19 +72,6 @@ const RateChart: React.FC<PropsWithChildren<Props>> = ({ surveyId }) => {
     fill: {
       type: "gradient",
     },
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200,
-          },
-          legend: {
-            position: "bottom",
-          },
-        },
-      },
-    ],
     labels: ["Star 1", "Star 2", "Star 3", "Star 4", "Star 5"],
   };
   return (
