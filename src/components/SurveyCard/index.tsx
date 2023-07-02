@@ -9,6 +9,7 @@ import {
 import RateChart from "../charts/RateChart";
 import Popover from "../shared/Popover";
 import useSurvey from "../../hooks/useSurvey";
+import { useNavigate } from "react-router-dom";
 type Props = ISurvey;
 const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
   name,
@@ -16,12 +17,13 @@ const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
   _id,
 }) => {
   const { updateSurvey, deleteSurvey } = useSurvey();
+  const navigate = useNavigate();
   const [isSettingMenuVisible, setSettingMenuVisible] = useState(false);
   const settingOptions = [
     {
       label: "Edit",
       action: () => {
-        console.log("aslkdajs");
+        console.log("Edit click");
       },
     },
     {
@@ -38,7 +40,10 @@ const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
       <header className="survey-card__header horizontal-center">
         <span>{name}</span>
         <div className="actions horizontal-center">
-          <EyeFill style={{ marginRight: "8px" }} />
+          <EyeFill
+            onClick={() => navigate(`/surveys/${_id}`)}
+            style={{ marginRight: "8px" }}
+          />
           <div className="setting vertical-center">
             <ThreeDotsVertical
               onClick={() => {

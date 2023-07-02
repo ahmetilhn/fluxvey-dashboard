@@ -5,6 +5,7 @@ import NewSurvey from "../pages/Surveys/New";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Login from "../pages/Login";
 import AuthLayout from "../layouts/AuthLayout";
+import SurveyDetail from "../pages/Surveys/Detail";
 
 const RouteLayer = () => {
   return (
@@ -13,6 +14,7 @@ const RouteLayer = () => {
         <Route element={<Home />} path="/" />
         <Route element={<Surveys />} path="/surveys" />
         <Route element={<NewSurvey />} path="/surveys/new" />
+        <Route element={<SurveyDetail />} path="/surveys/:surveyId" />
       </Route>
       <Route element={<AuthLayout />}>
         <Route element={<Login />} path="/login" />

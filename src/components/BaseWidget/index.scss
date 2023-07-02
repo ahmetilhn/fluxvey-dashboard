@@ -2,13 +2,14 @@
   width: calc(50% - 5px);
   height: 440px;
   border: 1px solid $gray-one;
-  border-radius: 20px;
+  border-radius: 5px;
   justify-content: flex-start !important;
   overflow: hidden;
   margin-bottom: 10px;
   &__header {
     width: 100%;
-    background-color: transparentize($gray-one, 0.9);
+    $color-list: $gray-one, $white;
+    @include gradient(-90deg, $color-list);
     padding: 10px 20px;
     border-bottom: 1px solid $gray-one;
     h3 {

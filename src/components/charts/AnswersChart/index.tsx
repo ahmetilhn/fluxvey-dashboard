@@ -2,10 +2,13 @@ import ReactApexChart from "react-apexcharts";
 import "./index.scss";
 import BaseWidget from "../../BaseWidget";
 import { getDayByDate, last7Days } from "../../../utils/date.utils";
-import { useAnswerStore } from "../../../store";
-import { useEffect, useState } from "react";
-export const AnswersChart = () => {
-  const { lastAnswers } = useAnswerStore((store) => store);
+import { PropsWithChildren, useEffect, useState } from "react";
+import IAnswer from "../../../types/IAnswer";
+import NotResult from "../../shared/NotResult";
+type Props = {
+  data: Array<IAnswer>;
+};
+export const AnswersChart: React.FC<PropsWithChildren<Props>> = ({ data }) => {
   const [chartData, setChartData] = useState<Array<number>>([]);
   const [isChartReady, setChartReady] = useState<boolean>(false);
   useEffect(() => {
@@ -13,7 +16,7 @@ export const AnswersChart = () => {
     return () => {
       setChartData([]);
     };
-  }, [lastAnswers]);
+  }, [data]);
   const options = {
     theme: {
       palette: "palette1", // upto palette10
@@ -67,19 +70,21 @@ export const AnswersChart = () => {
   const initChart = () => {
     last7Days().forEach((day) => {
       let averageOfDay = 0;
-      lastAnswers.forEach((answer) => {
+      data.forEach((answer) => {
         const createdDay = getDayByDate(new Date(answer.createdAt));
         if (day === createdDay) {
           averageOfDay = Number(((averageOfDay + answer.rate) / 2).toFixed(1));
         }
       });
       setChartData((val) => [...val, averageOfDay]);
-      setChartReady(true);
+      if (!!data.length) {
+        setChartReady(true);
+      }
     });
   };
   return (
-    <BaseWidget title="Answer Graph">
-      {isChartReady && (
+    <>
+      {isChartReady === true ? (
         <ReactApexChart
           options={options}
           series={[
@@ -92,8 +97,10 @@ export const AnswersChart = () => {
           width={"100%"}
           height={"100%"}
         />
+      ) : (
+        <NotResult msg="Not enough data" />
       )}
-    </BaseWidget>
+    </>
   );
 };
 
