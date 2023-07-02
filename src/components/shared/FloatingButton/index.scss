@@ -1,6 +1,6 @@
 @keyframes bottomToTop {
   to {
-    bottom: 40px;
+    transform: translateY(-20px);
   }
 }
 $color-list: $primary-darkest, $primary, $primary-light;
@@ -15,9 +15,9 @@ $color-list: $primary-darkest, $primary, $primary-light;
   transition: transform 0.3s ease-in-out;
   position: fixed;
   right: 40px;
-  bottom: -100px;
+  bottom: 40px;
   cursor: pointer;
-  animation: bottomToTop 0.5s forwards ease;
+  animation: bottomToTop 0.5s forwards ease infinite alternate;
   svg {
     width: 60%;
     height: 60%;
