@@ -1,25 +1,56 @@
-import { BrowserChrome } from "react-bootstrap-icons";
 import "./index.scss";
 import IAnswer from "../../types/IAnswer";
 import NotResult from "../shared/NotResult";
-import useAnswer from "../../hooks/useAnswer";
-import { useAnswerStore } from "../../store";
-export const AnswerList = () => {
-  const { lastAnswers } = useAnswerStore((store) => store);
+import React, { PropsWithChildren } from "react";
+type Props = {
+  data: Array<IAnswer>;
+  isDetailed?: boolean;
+};
+export const AnswerList: React.FC<PropsWithChildren<Props>> = ({
+  data,
+  isDetailed = false,
+}) => {
   return (
     <div className="answer-list vertical-center">
-      {lastAnswers.slice(0, 20).map((item: IAnswer, index) => (
-        <div key={index} className="answer-list__item horizontal-center">
-          <span className="device-type horizontal-center">
-            <BrowserChrome />
-            {item.session.device_type}
-          </span>
-          <span className={`rate rate--${item.rate}`}>{item.rate}</span>
-          <span className="msg">{item.message}</span>
-          <span>{item.session.platform}</span>
-        </div>
-      ))}
-      {!lastAnswers.length && <NotResult msg="Not enough answers" />}
+      <table>
+        <thead>
+          <tr>
+            {isDetailed && <th>Date</th>}
+            <th>Rate</th>
+            <th>Device</th>
+            <th>Message</th>
+            <th>Platform</th>
+            {isDetailed && (
+              <>
+                <th>Operating System</th>
+                <th>From URL</th>
+                <th>User Agent</th>
+                <th>Translation</th>
+              </>
+            )}
+          </tr>
+        </thead>
+        <tbody>
+          {data.slice(0, 20).map((item: IAnswer, index) => (
+            <tr>
+              {isDetailed && <td>{item.createdAt.toString()}</td>}
+              <td>{item.rate}</td>
+              <td>{item.session.device_type}</td>
+              <td>{item.message}</td>
+              <td> {item.session.platform} </td>
+              {isDetailed && (
+                <>
+                  <td>{item.session.operating_system}</td>
+                  <td> {item.session.page_url} </td>
+                  <td> {item.session.user_agent} </td>
+                  <td> {item.session.translation} </td>
+                </>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {!data.length && <NotResult msg="Not enough answers" />}
     </div>
   );
 };

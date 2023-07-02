@@ -3,45 +3,42 @@
   height: 100%;
   justify-content: flex-start !important;
   overflow-y: auto;
-  &__item {
-    width: 98%;
-    height: 40px;
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid $gray-one;
-    justify-content: space-between !important;
-    margin: 5px;
-    transition: width 0.1s;
-    font-size: 14px;
-    color: $dark-three;
-    font-weight: 500;
-    .device-type {
-      svg {
-        margin-right: 5px;
-      }
-    }
-    .rate {
-      &--1 {
-        color: $red;
-      }
-      &--2 {
-        color: $red-light;
-      }
-      &--3 {
-        color: $orange;
-      }
-      &--4 {
-        color: $green-light;
-      }
-      &--5 {
-        color: $green;
-      }
-    }
-    &:hover {
+  table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    tbody {
+      overflow-x: auto;
       width: 100%;
+      height: 100%;
     }
-    svg {
-      fill: $primary;
+    th,
+    td {
+      padding: 15px;
+      width: 100%;
+      height: 40px;
+    }
+    td {
+      white-space: nowrap;
+      overflow-x: scroll;
+      text-overflow: clip;
+    }
+    th {
+      text-align: left;
+      color: $dark-two;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+    }
+    tr {
+      border-bottom: 1px solid $gray-one;
+      width: 100%;
+      font-size: 14px;
+      color: $dark-three;
+      font-weight: 500;
+      &:nth-last-child(1) {
+        border-bottom: none;
+      }
     }
   }
 }

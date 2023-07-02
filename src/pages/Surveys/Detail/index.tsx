@@ -6,6 +6,7 @@ import IAnswer from "../../../types/IAnswer";
 import { useParams } from "react-router-dom";
 import BaseWidget from "../../../components/BaseWidget";
 import AnswerList from "../../../components/AnswerList";
+
 const SurveyDetail = () => {
   const [answers, setAnswers] = useState<Array<IAnswer>>([]);
   const params = useParams();
@@ -30,7 +31,7 @@ const SurveyDetail = () => {
         <AnswersChart data={answers} />
       </BaseWidget>
       <BaseWidget title="Answers" width="100%" height="400px">
-        <AnswerList />
+        <AnswerList isDetailed={true} data={answers} />
       </BaseWidget>
     </div>
   );

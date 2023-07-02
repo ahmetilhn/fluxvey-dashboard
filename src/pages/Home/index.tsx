@@ -21,7 +21,7 @@ const Home: React.FC = () => {
         <AnswersChart data={lastAnswers} />
       </BaseWidget>
       <BaseWidget title="Last Answers">
-        <AnswerList />
+        <AnswerList data={lastAnswers.slice(0, 20)} />
       </BaseWidget>
       <BaseWidget width="100%" height="310px">
         <SurveyList isScrollingX={true} />
