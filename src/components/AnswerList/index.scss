@@ -2,6 +2,7 @@
   width: 100%;
   height: 100%;
   justify-content: flex-start !important;
+  overflow-y: auto;
   &__item {
     width: 98%;
     height: 40px;

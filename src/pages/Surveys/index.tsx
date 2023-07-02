@@ -32,7 +32,7 @@ const Surveys: React.FC = () => {
   return (
     <div className="home horizontal-center">
       <BaseWidget title="Surveys" width="100%" height="100%">
-        <SurveyList />
+        <SurveyList isScrollingY={true} />
         <FloatingButton onClick={handleClick}>
           <PlusCircle />
         </FloatingButton>

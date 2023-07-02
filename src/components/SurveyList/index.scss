@@ -7,4 +7,8 @@
     overflow-x: auto;
     flex-wrap: nowrap;
   }
+  &--scroll-y {
+    height: 100%;
+    overflow-y: auto;
+  }
 }

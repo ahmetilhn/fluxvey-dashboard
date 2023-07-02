@@ -7,7 +7,7 @@ export const AnswerList = () => {
   const { last7DaysAnswers } = useSurveyStore((store) => store);
   return (
     <div className="answer-list vertical-center">
-      {last7DaysAnswers.slice(0, 7).map((item: IAnswer, index) => (
+      {last7DaysAnswers.slice(0, 20).map((item: IAnswer, index) => (
         <div key={index} className="answer-list__item horizontal-center">
           <span className="device-type horizontal-center">
             <BrowserChrome />

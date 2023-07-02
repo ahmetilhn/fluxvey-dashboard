@@ -19,7 +19,10 @@
   &__content {
     width: 100%;
     padding: 5px;
-    height: 100%;
+    height: calc(100% - 21px);
+    &--with-title {
+      height: calc(100% - 43px);
+    }
     //overflow-y: auto;
   }
 }

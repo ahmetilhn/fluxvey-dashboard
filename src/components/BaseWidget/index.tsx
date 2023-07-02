@@ -17,7 +17,13 @@ const BaseWidget: React.FC<PropsWithChildren<Props>> = ({
       <header className="base-widget__header">
         <h3>{title}</h3>
       </header>
-      <main className="base-widget__content">{children}</main>
+      <main
+        className={`base-widget__content ${
+          !!title && "base-widget__content--with-title"
+        }`}
+      >
+        {children}
+      </main>
     </section>
   );
 };
