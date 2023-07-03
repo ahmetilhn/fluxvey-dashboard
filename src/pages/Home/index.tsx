@@ -20,10 +20,10 @@ const Home: React.FC = () => {
       <BaseWidget title="Answer Graph" width="49%" height="440px">
         <AnswersChart data={lastAnswers} />
       </BaseWidget>
-      <BaseWidget title="Last Answers">
+      <BaseWidget width="48%" height="440px" title="Last Answers">
         <AnswerList data={lastAnswers.slice(0, 20)} />
       </BaseWidget>
-      <BaseWidget width="100%" height="310px">
+      <BaseWidget width="100%" height="330px">
         <SurveyList isScrollingX={true} />
       </BaseWidget>
     </div>

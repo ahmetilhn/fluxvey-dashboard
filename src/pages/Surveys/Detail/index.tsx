@@ -41,7 +41,7 @@ const SurveyDetail = () => {
 
   return (
     <div className="survey-detail horizontal-center">
-      <BaseWidget title="Answer Graph" width="65%" height="400px">
+      <BaseWidget title="Answer Graph" width="63%" height="400px">
         <AnswersChart data={answers} />
       </BaseWidget>
       <BaseWidget
