@@ -40,9 +40,9 @@ export const AnswerList: React.FC<PropsWithChildren<Props>> = ({
               <td>
                 {Array(item.rate)
                   .fill(0)
-                  .map((item) => (
+                  .map((item, _index) => (
                     <StarFill
-                      key={item}
+                      key={_index}
                       fill="#f5d100"
                       style={{ marginLeft: "2px" }}
                     />

@@ -1,16 +1,16 @@
-$color-list: $primary-darkest, $primary, $primary-light;
 .navbar {
   width: 100px;
   height: 100%;
   justify-content: space-between !important;
   padding: 20px 0;
-  box-shadow: 0 0px 7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: $primary;
+  border-radius: 0 40px 40px 0;
   &__logo {
     width: 54px;
     height: 54px;
     border-radius: 50%;
-    @include gradient(45deg, $color-list);
-    border: 2px solid $primary-darkest;
+    border: 2px solid transparentize($white, 0.5);
     a {
       width: 100%;
       height: 100%;
@@ -27,7 +27,7 @@ $color-list: $primary-darkest, $primary, $primary-light;
       width: 36px;
       height: 36px;
       margin: 16px 0;
-      background-color: transparentize($gray-one, 0.5);
+      background-color: transparentize($white, 0.85);
       border-radius: 10px;
       &:hover {
         svg {
@@ -38,11 +38,12 @@ $color-list: $primary-darkest, $primary, $primary-light;
         transition: transform 0.1s;
         width: 20px;
         height: 20px;
-        fill: $gray-three;
+        fill: transparentize($white, 0.2);
       }
       &.active {
         svg {
-          fill: $dark;
+          fill: $white;
+          transform: scale(1.1);
         }
       }
     }
@@ -53,8 +54,11 @@ $color-list: $primary-darkest, $primary, $primary-light;
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
-    background-color: transparentize($gray-one, 0.5);
+    background-color: transparentize($white, 0.85);
     transition: 0.1s;
+    svg {
+      fill: $white;
+    }
     &:hover {
       transform: scale(1.1);
     }
