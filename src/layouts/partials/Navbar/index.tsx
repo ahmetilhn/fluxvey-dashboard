@@ -1,5 +1,5 @@
 import "./index.scss";
-import logo from "../../assets/svg/logo.svg";
+import logo from "../../../assets/svg/logo.svg";
 import { Link, NavLink } from "react-router-dom";
 import {
   GearFill,
@@ -7,7 +7,7 @@ import {
   MenuButtonWideFill,
   DoorClosedFill,
 } from "react-bootstrap-icons";
-import useAuth from "../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 const menus = [
   {
     icon: <Speedometer />,
