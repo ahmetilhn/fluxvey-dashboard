@@ -1,10 +1,11 @@
 import { toast } from "react-hot-toast";
 import surveyService from "../services/modules/survey.service";
 import { useCommonStore, useSurveyStore } from "../store";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import ISurvey from "../types/ISurvey";
 
 const useSurvey = () => {
+  const [detail, setDetail] = useState<ISurvey>();
   const { updateLoading } = useCommonStore((store) => store);
   const { setSurveys } = useSurveyStore((store) => store);
   const deleteSurvey = async (survey_id: string) => {
@@ -36,9 +37,12 @@ const useSurvey = () => {
       return res;
     } catch (error) {}
   };
-  const getSurveyDetail = async (id: string): Promise<ISurvey | any> => {
+  const getSurveyDetail = async (id: string): Promise<void> => {
     try {
-      return surveyService.getSurveyDetail(id);
+      const res: ISurvey | any = await surveyService.getSurveyDetail(id);
+      if (typeof res === "object") {
+        setDetail(res);
+      }
     } catch (error) {}
   };
   const initSurveyState = useCallback(async (): Promise<any> => {
@@ -59,6 +63,7 @@ const useSurvey = () => {
     updateSurvey,
     initSurveyState,
     getSurveyDetail,
+    detail,
   };
 };
 

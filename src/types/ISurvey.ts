@@ -10,6 +10,7 @@ export default interface ISurvey {
   name: string;
   view_counts: number;
   render_counts: number;
+  answer_counts: number;
   type: string | SurveyTypes;
   title: string;
   response_counts: number;

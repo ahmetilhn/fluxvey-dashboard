@@ -13,8 +13,15 @@ import VueLogo from "../../../assets/svg/vue.svg";
 import HtmlLogo from "../../../assets/svg/html.svg";
 import JavascriptLogo from "../../../assets/svg/javascript.svg";
 import RateChart from "../../../components/charts/RateChart";
+import {
+  BoxSeamFill,
+  Calendar2CheckFill,
+  EyeFill,
+} from "react-bootstrap-icons";
+import useSurvey from "../../../hooks/useSurvey";
 const SurveyDetail = () => {
   const [answers, setAnswers] = useState<Array<IAnswer>>([]);
+  const { getSurveyDetail, detail } = useSurvey();
   const params = useParams();
   const initAnswers = async () => {
     try {
@@ -28,6 +35,7 @@ const SurveyDetail = () => {
   };
 
   useEffect(() => {
+    getSurveyDetail(params.surveyId as string);
     initAnswers();
   }, []);
 
@@ -38,10 +46,30 @@ const SurveyDetail = () => {
       </BaseWidget>
       <BaseWidget
         styles={{ marginLeft: "10px" }}
-        title="Rate"
+        title="Info"
         width="34%"
         height="400px"
       >
+        <div className="info horizontal-center">
+          <div className="info__item horizontal-center">
+            <EyeFill />
+            <p>
+              Views: <strong>{detail?.view_counts}</strong>
+            </p>
+          </div>
+          <div className="info__item horizontal-center">
+            <BoxSeamFill />
+            <p>
+              Renders: <strong>{detail?.render_counts}</strong>
+            </p>
+          </div>
+          <div className="info__item horizontal-center">
+            <Calendar2CheckFill />
+            <p>
+              Answers: <strong>{detail?.answer_counts}</strong>
+            </p>
+          </div>
+        </div>
         <div className="rate-chart vertical-center">
           <RateChart surveyId={params.surveyId as string} />
         </div>
@@ -49,7 +77,7 @@ const SurveyDetail = () => {
       <BaseWidget title="Answers" width="100%" height="600px">
         <AnswerList isDetailed={true} data={answers} />
       </BaseWidget>
-      <BaseWidget title="Integration" width="100%" height="420px">
+      <BaseWidget title="Integration" width="100%" height="470px">
         <div className="integration horizontal-center">
           <div className="integration__info vertical-center">
             <h3>Install Fluxvey on your own</h3>

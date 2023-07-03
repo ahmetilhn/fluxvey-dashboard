@@ -35,7 +35,7 @@ export const AnswerList: React.FC<PropsWithChildren<Props>> = ({
         </thead>
         <tbody>
           {data.slice(0, 20).map((item: IAnswer, index) => (
-            <tr>
+            <tr key={index}>
               <td>{formattedDate(item.createdAt)}</td>
               <td>
                 {Array(item.rate)
