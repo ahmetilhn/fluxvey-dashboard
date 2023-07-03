@@ -17,7 +17,7 @@ const Home: React.FC = () => {
   }, []);
   return (
     <div className="home horizontal-center">
-      <BaseWidget title="Answer Graph" width="50%" height="440px">
+      <BaseWidget title="Answer Graph" width="49%" height="440px">
         <AnswersChart data={lastAnswers} />
       </BaseWidget>
       <BaseWidget title="Last Answers">

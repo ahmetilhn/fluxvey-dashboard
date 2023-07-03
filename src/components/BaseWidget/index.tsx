@@ -17,7 +17,7 @@ const BaseWidget: React.FC<PropsWithChildren<Props>> = ({
 }) => {
   return (
     <section
-      className="base-widget vertical-center"
+      className="base-widget vertical-center global-shadow"
       style={{ ...styles, width, height }}
     >
       <header className="base-widget__header">

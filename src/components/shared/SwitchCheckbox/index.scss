@@ -5,7 +5,7 @@
 
 .toggle-switch {
   display: inline-block;
-  background-color: transparentize($color: $gray-one, $amount: 0.4);
+  background-color: transparentize($color: $gray-one, $amount: 0.7);
   border-radius: 16px;
   width: 58px;
   height: 30px;
@@ -19,8 +19,7 @@
 }
 .toggle-switch:before {
   display: block;
-  $color-list: $gray-two, $gray-one;
-  @include gradient(45deg, $color-list);
+  background-color: $gray-one;
   border-radius: 50%;
   border: 1px solid $gray-two;
   width: 22px;

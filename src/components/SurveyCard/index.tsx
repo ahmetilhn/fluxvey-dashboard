@@ -31,12 +31,15 @@ const SurveyCard: React.FC<PropsWithChildren<Props>> = ({
     },
     {
       label: active ? "Disabled" : "Active",
-      action: () => updateSurvey({ _id, active: !active }),
+      action: async () => {
+        await updateSurvey({ _id, active: !active });
+        setSettingMenuVisible(false);
+      },
       color: active ? "#ed5959" : "#53cf84",
     },
   ];
   return (
-    <article className="survey-card vertical-center">
+    <article className="survey-card vertical-center global-shadow">
       <header className="survey-card__header horizontal-center">
         <span>{name}</span>
         <div className="actions horizontal-center">

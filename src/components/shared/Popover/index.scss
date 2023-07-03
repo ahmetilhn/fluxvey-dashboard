@@ -23,13 +23,9 @@
     width: 100%;
     justify-content: flex-start !important;
     padding: 10px 15px;
-    border-bottom: 1px solid transparentize($color: $gray-one, $amount: 0.5);
     cursor: pointer;
     &:hover {
       background-color: transparentize($color: $gray-one, $amount: 0.7);
-    }
-    &:nth-last-child(1) {
-      border-bottom: none;
     }
   }
 }
